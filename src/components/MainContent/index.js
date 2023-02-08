@@ -7,6 +7,8 @@ import { userDetails, quotations } from '../../action/index';
 
 const LeftSection = (props) => {
   const { dispatch, user, allQuotations, type, isCreate } = props;
+  console.log("user", user);
+  console.log("allQuotations", allQuotations);
   useEffect(() => {
     dispatch(userDetails());
     dispatch(quotations());
@@ -22,7 +24,7 @@ const LeftSection = (props) => {
             <p className="content">
              {quotation.content}
             </p>
-            <p className="by">{quotation.by}</p>
+            <p className="by">{user.name}</p>
           </div>
         )): (<h1>You haven't added any quotations!</h1>)}
       </> : 
@@ -32,7 +34,7 @@ const LeftSection = (props) => {
             <p className="content">
              {quotation.content}
             </p>
-            <p className="by">{quotation.by}</p>
+            <p className="by">{quotation.user.name}</p>
           </div>
         )): (<h1>You haven't added any quotations!</h1>)}
       </>
