@@ -2,22 +2,19 @@ import React, {useEffect, useDispatch, useState} from "react";
 import { connect } from 'react-redux';
 import { Container } from "./styles";
 import {data} from '../../DemoData';
+import BlogForm from "../blogForm";
 import { userDetails, quotations } from '../../action/index';
 
 const LeftSection = (props) => {
-  const { dispatch, user, allQuotations, type } = props;
+  const { dispatch, user, allQuotations, type, isCreate } = props;
   useEffect(() => {
     dispatch(userDetails());
     dispatch(quotations());
   }, []);
 
-
-  // console.log("user", user.quotaions);
-  // console.log("allQuotations", allQuotations.quotaions);
-  console.log("type", type);
-  console.log("allQuotations", allQuotations);
   return (
     <Container>
+      {isCreate ? <BlogForm /> : null}
       { type === 'posted' ?
       <>
       {user.quotaions?.length > 0 ? user.quotaions.map((quotation) => (
@@ -47,12 +44,12 @@ const LeftSection = (props) => {
 };
 
 const matStateToProps = (state) => {
-  const { user, quotations, type } = state;
-  console.log("state", state);
+  const { user, quotations, type, isCreate } = state;
   return {
     user: user,
     allQuotations: quotations,
-    type: type
+    type: type,
+    isCreate: isCreate
   }
 }
 

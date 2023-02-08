@@ -9,16 +9,8 @@ const Form = (props) => {
   const [confirmPassword, setConfirmPassword] = useState();
   const handleForm = (val) => {
     if(val === isSignUp){
-        console.log("Submit form SignUp")
-        console.log('name', name);
-        console.log('email', email);
-        console.log('password', password);
-        console.log('confirmPassword', confirmPassword);
 
     }else if(val === isSignUp){
-        console.log("Submit form signIn")
-        console.log('email', email);
-        console.log('password', password);
     }
     else{
         setName("");

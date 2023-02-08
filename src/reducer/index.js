@@ -1,9 +1,10 @@
-import { USERDETAILS, QUOTATIONS, TYPE } from '../action/types';
+import { USERDETAILS, QUOTATIONS, TYPE, BLOG_CREATE } from '../action/types';
 
 const initialState = {
     user: {},
     quotations: [],
     type: 'all',
+    isCreate: false,
 }
 
 export default function reducer(state=initialState, action){
@@ -13,16 +14,24 @@ export default function reducer(state=initialState, action){
             return {
                 ...state,
                 user: data,
+                isCreate: false
             }
         case QUOTATIONS:
             return {
                 ...state,
                 quotations: data,
+                isCreate: false,
             }
         case TYPE:
             return {
                 ...state,
-                type: data
+                type: data,
+                isCreate: false,
+            }
+        case BLOG_CREATE:
+            return {
+                ...state,
+                isCreate: data,
             }
         default:
             return state;

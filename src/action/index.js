@@ -13,7 +13,6 @@ export function createUser({name, email, password, confirmPassword}){
         })
         .then(async (response) => {
             const data = await response.json();
-            console.log('data', data);
         })
 }
 
@@ -28,14 +27,28 @@ export function signIn({email, password}, navigate) {
     })
     .then(async (response) => {
         const data = await response.json();
-        console.log('data', data);
-        localStorage.setItem('token', data.data.token);
-        navigate('/home')
+        if(response.status === 200){
+            localStorage.setItem('token', data.data.token);
+            navigate('/home')
+        }
     })
 }
 
-export function createQuotations(){
-
+export function createQuotations({content}){
+    return (dispatch) => {
+        const url = getApis.createQuotation();
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": `Bearer ${localStorage.getItem('token')}`
+            },
+            body: getFormBody({content})
+        })
+        .then(async (response) => {
+            const data = await response.json();
+        })
+    }
 }
 
 export function userDetails(){
@@ -50,7 +63,6 @@ export function userDetails(){
         })
         .then( async (response) => {
             const data = await  response.json();
-            console.log("data", data.data.user);
             dispatch({type: USERDETAILS, data: data.data.user});
         })
         .catch((error) => {
@@ -71,7 +83,6 @@ export function quotations(){
         })
         .then(async (response) => {
             const data = await response.json();
-            console.log("data", data);
             dispatch({type: QUOTATIONS, data: data.data});
         })
         .catch((error) => {

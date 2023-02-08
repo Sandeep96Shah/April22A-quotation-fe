@@ -17,10 +17,8 @@ const Form = (props) => {
         signIn(data, navigate);
       }
         // cll the api
-      console.log("call the api");
     } else {
       setIsSighUp(val);
-      console.log("change the form");
     }
     setData({name: "", email: "", password: "", confirmPassword: ""});
   };
@@ -153,7 +151,6 @@ const Form = (props) => {
 };
 
 const mapstateToProps = (state) => {
-  console.log('state', state);
   return {};
 }
 

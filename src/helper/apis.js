@@ -1,4 +1,4 @@
-const ROOT_URL = "http://localhost:700";
+const ROOT_URL = "http://localhost:8002";
 
 export const getApis = {
     createUser: () => `${ROOT_URL}/sign-up`,
